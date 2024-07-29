@@ -39,7 +39,7 @@ def send_to_claude(log_file, log_type):
         log_content = file.read()
 
     # Prepare the prompt
-    prompt = f"The following is a linux {log_type}. Analyze this log and provide any helpful troubleshooting tips for any issues that are found:\n\n{log_content}"
+    prompt = f"Human: The following is a linux {log_type}. Analyze this log and provide any helpful troubleshooting tips for any issues that are found:\n\n{log_content}"
 
     # Prepare the request body
     body = json.dumps({
