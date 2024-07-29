@@ -32,7 +32,7 @@ def check_journalctl_and_export_logs():
 
 def send_to_claude(log_file, log_type):
     # Initialize Bedrock client
-    bedrock = boto3.client('bedrock-runtime')
+    bedrock = boto3.client('bedrock-runtime', "us-east-1")
 
     # Read the log file
     with open(log_file, 'r') as file:
