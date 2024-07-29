@@ -67,7 +67,10 @@ def send_to_claude(log_file, log_type):
     # Parse and print the response
     response_body = json.loads(response['body'].read())
     print(f"\nClaude's analysis of {log_type}:")
-    print(response_body['completion'])
+    if 'content' in response_body and len(response_body['content']) > 0:
+        print(response_body['content'][0]['text'])
+    else:
+        print("No content found in the response.")
 
 if __name__ == "__main__":
     check_journalctl_and_export_logs()
