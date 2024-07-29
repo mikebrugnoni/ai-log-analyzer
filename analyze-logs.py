@@ -39,16 +39,23 @@ def send_to_claude(log_file, log_type):
         log_content = file.read()
 
     # Prepare the prompt
-    prompt = f"Human: The following is a linux {log_type}. Analyze this log and provide any helpful troubleshooting tips for any issues that are found:\n\n{log_content}\n Assistant: "
+    #prompt = f"Human: The following is a linux {log_type}. Analyze this log and provide any helpful troubleshooting tips for any issues that are found:\n\n{log_content}\n Assistant: "
+    messages = [
+        {
+            "role": "user",
+            "content": f"Human: The following is a linux {log_type}. Analyze this log and provide any helpful troubleshooting tips for any issues that are found:\n\n{log_content}\n Assistant: "
+        }
+    ]
 
     # Prepare the request body
     body = json.dumps({
-        "prompt": prompt,
-        "max_tokens_to_sample": 4096,
+        "anthropic_version": "bedrock-2023-05-31",
+        "max_tokens": 4096,
+        "messages": messages,
         "temperature": 0.5,
         "top_p": 0.9,
     })
-
+    
     # Send request to Claude Sonnet
     response = bedrock.invoke_model(
         modelId='anthropic.claude-3-sonnet-20240229-v1:0',
