@@ -43,7 +43,7 @@ def send_to_claude(log_file, log_type):
     messages = [
         {
             "role": "user",
-            "content": f"Human: Analyze this log and provide any helpful troubleshooting tips for any issues that are found. Dont report on anything that is harmless and can be ignored. Only report on actionable items that are a priority for troubleshooting.:\n\n{log_content}\n Assistant: "
+            "content": f"Human: Analyze this log and provide any helpful troubleshooting tips for any issues that are found. Keep the response to each item in a single paragaph. Dont report on anything that is harmless and can be ignored. Only report on actionable items that are a priority for troubleshooting.:\n\n{log_content}\n Assistant: "
         }
     ]
 
