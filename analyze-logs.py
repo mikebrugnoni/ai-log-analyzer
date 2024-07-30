@@ -66,7 +66,7 @@ def send_to_claude(log_file, log_type):
 
     # Parse and print the response
     response_body = json.loads(response['body'].read())
-    print(f"\nClaude's analysis of {log_type}:")
+    print(f"\n===== {log_type} Analysis =====")
     if 'content' in response_body and len(response_body['content']) > 0:
         print(response_body['content'][0]['text'])
     else:
