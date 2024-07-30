@@ -2,6 +2,7 @@ import subprocess
 import os
 import json
 import boto3
+import shutil
 
 def check_journalctl_and_export_logs():
     # Check if journalctl exists
@@ -29,6 +30,18 @@ def check_journalctl_and_export_logs():
     # Send logs to Claude Sonnet on Amazon Bedrock
     # send_to_claude(ssh_log_file, "SSH Log")
     send_to_claude(error_log_file, "Error Log")
+
+def remove_tmp_dir():
+    tmp_dir = "/tmp/analyzer"
+    if os.path.exists(tmp_dir):
+        try:
+            shutil.rmtree(tmp_dir)
+            print(f"Removed {tmp_dir} directory.")
+        except Exception as e:
+            print(f"Error removing {tmp_dir} directory: {e}")
+    else:
+        print(f"{tmp_dir} directory does not exist.")
+
 
 def send_to_claude(log_file, log_type):
     # Initialize Bedrock client
@@ -74,3 +87,4 @@ def send_to_claude(log_file, log_type):
 
 if __name__ == "__main__":
     check_journalctl_and_export_logs()
+    remove_tmp_dir()
