@@ -15,19 +15,19 @@ def check_journalctl_and_export_logs():
     os.makedirs("/tmp/analyzer", exist_ok=True)
 
     # Export SSH logs
-    ssh_log_file = "/tmp/analyzer/ssh_logs.json"
-    ssh_log_command = f"journalctl -u ssh -o json > {ssh_log_file}"
-    subprocess.run(ssh_log_command, shell=True, check=True)
+    # ssh_log_file = "/tmp/analyzer/ssh_logs.json"
+    # ssh_log_command = f"journalctl -u ssh -o json > {ssh_log_file}"
+    # subprocess.run(ssh_log_command, shell=True, check=True)
 
     # Export error logs (priority err, crit, alert, and emerg)
     error_log_file = "/tmp/analyzer/error_logs.json"
-    error_log_command = f"journalctl -p err..emerg -o json > {error_log_file}"
+    error_log_command = f"journalctl -p err > {error_log_file}"
     subprocess.run(error_log_command, shell=True, check=True)
 
     print("Logs exported successfully to /tmp/analyzer/")
 
     # Send logs to Claude Sonnet on Amazon Bedrock
-    send_to_claude(ssh_log_file, "SSH Log")
+    # send_to_claude(ssh_log_file, "SSH Log")
     send_to_claude(error_log_file, "Error Log")
 
 def send_to_claude(log_file, log_type):
