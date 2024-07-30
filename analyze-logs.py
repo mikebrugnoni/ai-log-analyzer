@@ -51,8 +51,7 @@ def send_to_claude(log_file, log_type):
     with open(log_file, 'r') as file:
         log_content = file.read()
 
-    # Prepare the prompt
-    
+    # Prepare the prompt    
     #prompt = f"Human: The following is a linux {log_type}. Analyze this log and provide any helpful troubleshooting tips for any issues that are found:\n\n{log_content}\n Assistant: "
     messages = [
         {
