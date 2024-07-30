@@ -52,7 +52,7 @@ def send_to_claude(log_file, log_type):
         "anthropic_version": "bedrock-2023-05-31",
         "max_tokens": 4096,
         "messages": messages,
-        "temperature": 0.5,
+        "temperature": 0.1,
         "top_p": 0.9,
     })
     
