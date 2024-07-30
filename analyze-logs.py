@@ -43,7 +43,7 @@ def send_to_claude(log_file, log_type):
     messages = [
         {
             "role": "user",
-            "content": f"Human: The following is a linux {log_type}. Analyze this log and provide any helpful troubleshooting tips for any issues that are found:\n\n{log_content}\n Assistant: "
+            "content": f"Human: Analyze this log and provide any helpful troubleshooting tips for any issues that are found:\n\n{log_content}\n Assistant: "
         }
     ]
 
